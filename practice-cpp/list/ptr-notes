@@ -1,0 +1,46 @@
+- The value of the pointer becomes the address of where you point to and this will be the pointers address
+- For example
+  int array[100] = {1 , 2 ,3 ,4 , 5};
+  int *ptr_to_array = array;
+  std::cout << &array[0];
+  std::cout << &array;
+  std::cout << ptr_to_array;
+  Will all give u the same value for the address. So in other words the pointer has the value of the zeroth element in the array and &array is also referencing the zeroth element in the array
+  std::cout << &array[2];
+  Will be 8 more than &array[0] four per ints in c++ so 1, and than 2
+
+- So ptr_to_array will give me the value of the address it's point to but what about if I want the value of the index instead of the addresses
+  ptr_to_array[1] will give me 2 [0], [1] from the array *(ptr_to_array + 1) will give u the same results
+  So ptr_to_array[1] and *(ptr_to_array + 1) are the same things. 
+  *(ptr_to_array + 1) is dereferncing the value of that the pointer is pointing to for index 1
+  *ptr_to_array[1]  note that this would give u an error because no one knows what it's doing
+
+- If you have a pointer and you create another pointer which points to that pointer it'll be pointing to the address of &array[0] or &array or ptr_to_array. So the it's value would be the same for example:
+  int *ptr_to_ptr = ptr_to_array;
+  std::cout << &array[0];
+  std::cout << &array;
+  std::cout << ptr_to_ptr;
+  All of the above would produce the same code
+
+  ptr_to_ptr[0] will give u the value of the first element in the array[100]
+
+  Note if you point to an array and another variables points to that pointer pointing to the array and the first pointer being pointed to and array changes to point to something else the second pointer will still be pointing to the same array
+  For example: 
+
+  int array[100] = {1 , 2 ,3 ,4 , 5};
+  int *ptr_to_array = array;
+  int *ptr_to_ptr = ptr_to_array;
+  int new_array[10] = {6, 7, 8, 9};
+  ptr_to_array = new_array;
+
+  std::cout << &array[0];
+  std::cout << std::endl;
+  std::cout << &array;
+  std::cout << std::endl;
+  std::cout << ptr_to_array;
+  std::cout << std::endl;
+  std::cout << new_array;
+  std::cout << std::endl;
+  std::cout << ptr_to_ptr;
+
+  the ptr_to_ptr will remain pointing to array not new_array

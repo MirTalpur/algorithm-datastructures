@@ -1,0 +1,50 @@
+- List as a abstract data type
+- Basic List (i.e Array)
+  - Store a given number of elements of a given data type
+  - Write/ Modify elements at a position
+  - Read elements at a position
+
+- Another type of List is a dynamic list (i.e Linked List or even using Arrays this will be a dynamic list)
+  - empty list has size 0
+  - insert
+  - remove
+  - count
+  - Read/modify element at a poistion
+  - Specifiy data-type 
+
+- Dynamic List as Array Implementation
+  - int A[MAX_SIZE]
+    int end = -1 (points to ending of the list for example if empty it'll be at -1)
+    insert(2) (using tail)
+    note end will be updated to 0 now
+    insert(4)
+    note end will be updated to 1 now
+    insert(6)
+    note end will be updated to 2 now
+    insert(7)
+    note end will be updated to 3 now
+    insert(9)
+    note end will be updated to 4 now
+    insert(5, 2) (this will insert an integer 5 at position A[2] in the array so we need to shift everything to the right)
+    note end will be updated to 5 now
+    remove(0) (removes A[0] so the index of the array not doing this operation will require you to shift everything left)
+    note end will be updated to 4 now
+
+  - This psuedo code above gives you all the implementation of a dynamic array. Note the count will be end + 1 because count is holding the index but the size is actually +1 that index
+  - What happens if the list will fill up the entire array however? It's greater than MAX_SIZE? 
+  - We can't extend the same array this isn't possible to do
+  - So when the array is full, create a larger array copy previous array into new array and than free memory for the previous array
+  - This will be extremely costly in terms of time. So a strategy is to everytime the array is full we will create an another array double the size of the previous array and copy previous array elements into the new array
+
+  - Cost of all these operations using Dynamic List as Array
+    - Access (Read/Write element at index) O(1) constant time
+    - Insert element O(n) (if it's at the end of the array it's constant time but at a particular position it'll be shifting and worse case we shift the entire array at index 0)
+      Note: That if u insert an element at the end and the array is already full that means it won't be O(1) for insertion
+    - Removing Element O(n)
+    - Add O(n) (Adding is inserting the element at the end which means if the list is full it'll O(n) otherwise O(1) to add the ending)
+
+  - Therefore, Accessing Arrays at a position is fast but inserting and removing elements isn't as fast. Also the memory will be of no use if the MAX_SIZE isn't reached and if it has been reached we will need to double it so it'll be of no use again.
+  - Array as a dynamic list isn't efficient in terms of memory. 
+
+
+
