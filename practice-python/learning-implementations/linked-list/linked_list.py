@@ -31,6 +31,10 @@ class LinkedList(object):
 
   #O(N)
   def insertEnd(self):
+    if self.head is None:
+      self.insertStart(data)
+      return
+
     self.counter += 1
     newNode = Node(data)
     actualNode = self.head
