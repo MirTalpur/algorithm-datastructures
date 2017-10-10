@@ -33,6 +33,29 @@ class LinkedList(object):
   def list_size(self):
     return self.size
 
+  def sort_using_array(self):
+    current = self.head
+    list_to_array = []
+    while current.next is not None:
+      list_to_array.append(current.value)
+      current = current.next
+    list_to_array.append(current.value)
+    list_to_array.sort()
+    # keep a copy of the current linked list
+    copy = self.head
+    # Set the head of the new sorted linked List
+    self.head = Node(list_to_array[0])
+    # set the rest of the linked list
+    for value in list_to_array[1:]:
+      self.insertAtTail(value)
+
+    # delete the original linked list
+    while copy.next is not None:
+      temp = copy
+      copy = copy.next
+      del temp.value
+      del temp.next
+
   def remove(self, value):
     if self.head.value is value:
       newHead = self.head.next
@@ -80,13 +103,18 @@ linked = LinkedList()
 linked.insertAtTail(3)
 linked.insertAtTail(4)
 linked.insertAtTail(5)
-# print(linked.list_size())
-linked.remove(4)
-# print(linked.list_size())
-linked.remove(5)
-# print(linked.list_size())
-linked.insertAtTail(4)
-linked.insertAtTail(4)
-linked.remove(4)
+linked.insertAtTail(1)
+linked.insertAtTail(5)
+linked.insertAtTail(6)
+linked.sort_using_array()
 linked.traverse()
+# print(linked.list_size())
+# linked.remove(4)
+# print(linked.list_size())
+# linked.remove(5)
+# print(linked.list_size())
+# linked.insertAtTail(4)
+# linked.insertAtTail(4)
+# linked.remove(4)
+# linked.traverse()
 # print(linked.list_size())
