@@ -5,7 +5,18 @@ class LinkedList(object):
   def __init__(self):
     self.head = None
     self.size = 0
-  
+
+  def insertInBeginning(self, value):
+    if self.head is None:
+      newNode = Node(value)
+      self.head = newNode
+      self.size += 1
+    else:
+      newNode = Node(value)
+      newNode.next = self.head
+      self.head = newNode
+      self.size += 1
+
   def insertAtTail(self, value):
     if self.head is None:
       newNode = Node(value)
@@ -100,12 +111,15 @@ class LinkedList(object):
               print('Value not in list')
 
 linked = LinkedList()
-linked.insertAtTail(3)
-linked.insertAtTail(4)
-linked.insertAtTail(5)
-linked.insertAtTail(1)
-linked.insertAtTail(5)
-linked.insertAtTail(6)
+linked.insertInBeginning(4)
+linked.insertInBeginning(5)
+linked.insertInBeginning(6)
+linked.insertInBeginning(1)
+# linked.insertAtTail(4)
+# linked.insertAtTail(5)
+# linked.insertAtTail(1)
+# linked.insertAtTail(5)
+# linked.insertAtTail(6)
 linked.sort_using_array()
 linked.traverse()
 # print(linked.list_size())
