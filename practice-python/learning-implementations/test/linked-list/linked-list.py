@@ -29,15 +29,6 @@ class LinkedList(object):
     head = self.merge_list(l1,l2)
     return head
 
-  def merge_sort(self, head):
-    if head is None or head.next is None:
-      return head
-    l1,l2 = self.divide_list(head)
-    l1 = self.merge_sort(l1)
-    l2 = self.merge_sort(l2)
-    head = self.merge_list(l1,l2)
-    return head
-
   def divide_list(self,head):
     fast = head
     slow = head
@@ -56,6 +47,7 @@ class LinkedList(object):
     back = slow
     return front,back
 
+  # reverse a linked list
   def reverse(self):
     if self.head is None or self.head.next is None:
       return head
@@ -68,6 +60,25 @@ class LinkedList(object):
       current = next
     self.head = prev
 
+  def reverse_util(self, current, prev):
+    # If last node mark it head
+    if current.next is None:
+      self.head = current
+      # Update next to prev node
+      current.next = prev
+      return
+    # save current.next node for recursive calls
+    temp = current.next
+
+    # update next
+    current.next = prev
+    self.reverse_util(temp, current)
+
+  # reverse a linked list recursively
+  def reverse_recursively(self):
+    if self.head is None:
+      return
+    self.reverse_util(self.head, None)
   # Move last element to front of a given Linked List
   def move_last(self):
     previous_node = self.head
@@ -192,7 +203,7 @@ linked.insertInBeginning(6)
 linked.insertInBeginning(1)
 linked.insertInBeginning(100)
 linked.insertInBeginning(-1)
-linked.reverse()
+linked.reverse_recursively()
 # linked.insertAtTail(4)
 # linked.insertAtTail(5)
 # linked.insertAtTail(1)
