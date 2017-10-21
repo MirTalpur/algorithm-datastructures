@@ -6,6 +6,69 @@ class LinkedList(object):
     self.head = None
     self.size = 0
 
+  def merge_list(self, l1,l2):
+    temp = None
+    if l1 is None:
+      return l2
+    if l2 is None:
+      return l1
+    if l1.value <= l2.value:
+      temp = l1
+      temp.next = self.merge_list(l1.next, l2)
+    else:
+      temp = l2
+      temp.next = self.merge_list(l1,l2.next)
+    return temp
+
+  def merge_sort(self, head):
+    if head is None or head.next is None:
+      return head
+    l1,l2 = self.divide_list(head)
+    l1 = self.merge_sort(l1)
+    l2 = self.merge_sort(l2)
+    head = self.merge_list(l1,l2)
+    return head
+
+  def merge_sort(self, head):
+    if head is None or head.next is None:
+      return head
+    l1,l2 = self.divide_list(head)
+    l1 = self.merge_sort(l1)
+    l2 = self.merge_sort(l2)
+    head = self.merge_list(l1,l2)
+    return head
+
+  def divide_list(self,head):
+    fast = head
+    slow = head
+    detach_node = None
+    if fast.next:
+      fast = fast.next
+    while fast is not None:
+      detach_node = slow
+      slow = slow.next
+      if fast.next:
+        fast = fast.next
+      else:
+        fast = None
+    front = head
+    detach_node.next = None
+    back = slow
+    return front,back
+
+  # Move last element to front of a given Linked List
+  def move_last(self):
+    previous_node = self.head
+    current = self.head
+    if self.head.next:
+      current = current.next
+    while current.next is not None:
+      current = current.next
+      previous_node = previous_node.next
+    current.next = self.head
+    self.head = current
+    previous_node.next = None
+
   def insertInBeginning(self, value):
     if self.head is None:
       newNode = Node(value)
@@ -115,12 +178,15 @@ linked.insertInBeginning(4)
 linked.insertInBeginning(5)
 linked.insertInBeginning(6)
 linked.insertInBeginning(1)
+linked.insertInBeginning(100)
+linked.insertInBeginning(-1)
 # linked.insertAtTail(4)
 # linked.insertAtTail(5)
 # linked.insertAtTail(1)
 # linked.insertAtTail(5)
 # linked.insertAtTail(6)
-linked.sort_using_array()
+linked.merge_sort(linked.head)
+# linked.move_last()
 linked.traverse()
 # print(linked.list_size())
 # linked.remove(4)
