@@ -56,6 +56,18 @@ class LinkedList(object):
     back = slow
     return front,back
 
+  def reverse(self):
+    if self.head is None or self.head.next is None:
+      return head
+    prev = None
+    current = self.head
+    while current is not None:
+      next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    self.head = prev
+
   # Move last element to front of a given Linked List
   def move_last(self):
     previous_node = self.head
@@ -180,12 +192,13 @@ linked.insertInBeginning(6)
 linked.insertInBeginning(1)
 linked.insertInBeginning(100)
 linked.insertInBeginning(-1)
+linked.reverse()
 # linked.insertAtTail(4)
 # linked.insertAtTail(5)
 # linked.insertAtTail(1)
 # linked.insertAtTail(5)
 # linked.insertAtTail(6)
-linked.merge_sort(linked.head)
+# linked.merge_sort(linked.head)
 # linked.move_last()
 linked.traverse()
 # print(linked.list_size())
