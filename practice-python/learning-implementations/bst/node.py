@@ -33,7 +33,7 @@ class Node(object):
           tempNode = self.leftChild
         else:
           tempNode = self.rightChild
-        parentNode = self.rightChild
+        parentNode.leftChild = tempNode
       elif parentNode.rightChild == self:
         if self.leftChild is not None:
           tempNode = self.leftChild

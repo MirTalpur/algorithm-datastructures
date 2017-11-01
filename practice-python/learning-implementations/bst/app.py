@@ -6,4 +6,8 @@ bst.insert(10)
 bst.insert(-2)
 bst.insert(1)
 
+bst.remove(10)
 bst.traverseInOrder()
+
+print(bst.getMax())
+print(bst.getMin())
