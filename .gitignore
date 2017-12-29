@@ -2,3 +2,4 @@ practice-cpp/.gitignore
 practice-cpp/list/.idea/
 practice-cpp/list/CMakeLists.txt
 practice-cpp/list/cmake-build-debug/
+practice-python/.idea/*
